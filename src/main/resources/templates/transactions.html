@@ -113,8 +113,8 @@
                 <td th:text="${transaction.id}"></td>
                 <td th:text="${transaction.type}"></td>
                 <td th:text="${transaction.amount}"
-                    th:classappend="${transaction.type == 'Deposit' || transaction.type == 'Transfer In'} ? 'text-success' : 'text-danger'">
-                    <span th:text="${transaction.type == 'Deposit' || transaction.type == 'Transfer In'} ? '+$' + transaction.amount : '-$' + transaction.amount"></span>
+                    th:classappend="${transaction.type.contains('Transfer In') || transaction.type == 'Deposit'} ? 'text-success' : 'text-danger'">
+                    <span th:text="${transaction.type.contains('Transfer In') || transaction.type == 'Deposit'} ? '+$' + transaction.amount : '-$' + transaction.amount"></span>
                 </td>
                 <td th:text="${transaction.timestamp}"></td>
             </tr>
