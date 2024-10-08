@@ -51,11 +51,18 @@ public class BankController {
     }
 
     @PostMapping("/deposit")
-    public String deposit(@RequestParam BigDecimal amount) {
+    public String deposit(@RequestParam BigDecimal amount, Model model) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         Account account = accountService.findAccountByUsername(username);
 
-        accountService.deposit(account, amount);
+        try {
+            accountService.deposit(account, amount);
+
+        } catch (RuntimeException e) {
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("account", account);
+            return "dashboard";
+        }
 
         return "redirect:/dashboard";
     }
