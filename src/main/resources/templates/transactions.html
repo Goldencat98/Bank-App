@@ -47,7 +47,7 @@
             background-color: rgba(0, 0, 0, 0.8); /* Darker background for better contrast */
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            box-shadow: 100px 50px 15px rgba(0, 0, 0, 0.5);
             overflow-x: auto; /* Ensures table is responsive */
         }
 
@@ -112,9 +112,8 @@
             <tr th:each="transaction : ${transactions}">
                 <td th:text="${transaction.id}"></td>
                 <td th:text="${transaction.type}"></td>
-                <td th:text="${transaction.amount}"
+                <td th:text="${transaction.type.contains('Transfer In') || transaction.type == 'Deposit' ? '+€' + transaction.amount : '-€' + transaction.amount}"
                     th:classappend="${transaction.type.contains('Transfer In') || transaction.type == 'Deposit'} ? 'text-success' : 'text-danger'">
-                    <span th:text="${transaction.type.contains('Transfer In') || transaction.type == 'Deposit'} ? '+$' + transaction.amount : '-$' + transaction.amount"></span>
                 </td>
                 <td th:text="${transaction.timestamp}"></td>
             </tr>
