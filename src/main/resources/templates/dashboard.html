@@ -67,19 +67,22 @@
             background-color: rgba(255, 255, 255, 0.1);
             padding: 15px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 100px 50px 10px rgba(0, 0, 0, 0.1);
         }
 
         .account-details {
             background-color: rgba(255, 255, 255, 0.1);
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 100px 50px 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
 
         .error {
             color: #ff4c4c;
+        }
+        .success {
+            color: greenyellow;
         }
 
         .footer {
@@ -191,7 +194,8 @@
         </div>
     </div>
 
-    <p th:if="${error != null}" th:text="${error}" class="error text-center mt-3"></p>
+    <p th:if="${error == 'Amount must be greater than zero' || error == 'Insufficient balance'}" th:text="${error}" class="error text-center mt-3"></p>
+    <p th:if="${error == 'Successfully deposited'}" th:text="${error}" class="success text-center mt-3"></p>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
